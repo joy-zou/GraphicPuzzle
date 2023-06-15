@@ -28,9 +28,6 @@ public class PictureView extends JFrame implements ActionListener
         add(movesReport);
         
         //Make icons from a split up picture.
-        //Here, the image files are numbered 1-9 and 
-        //live in a folder called pic that I dragged
-        //into the project folder
         Icon ic0=new ImageIcon("");  
         Icon ic1=new ImageIcon("pic/1.png");  
         Icon ic2=new ImageIcon("pic/2.png");  
@@ -45,9 +42,9 @@ public class PictureView extends JFrame implements ActionListener
         this.icons = ic;
         
         //Create buttons using each icon        
-        b0=new JButton("");  //Any argument that is input here is displayed on the button
-        b1=new JButton("");  //It's blank here just because the updateIcons() method is going to 
-        b2=new JButton("");  //overwrite anything we put on to start with anyway.
+        b0=new JButton(""); 
+        b1=new JButton(""); 
+        b2=new JButton("");  
         b3=new JButton("");
         b4=new JButton("");
         b5=new JButton("");
@@ -95,15 +92,13 @@ public class PictureView extends JFrame implements ActionListener
         //Set attributes of the frame itself
         setSize(375, 540);  //size of window
         setLayout(null);
-        setVisible(true);   //it's set up, so now you can make it visible!
+        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //hit X to close the window
     }
     
     public void actionPerformed(ActionEvent e)
     {
-        //if ___ button is pressed, do ___
-        // if(e.getSource() == /*button name*/)
-        
+
     	if(e.getSource()==next)
 		{
 			//reset move counter
@@ -157,12 +152,6 @@ public class PictureView extends JFrame implements ActionListener
         
     }
     
-    //Much like updateLabels in the other views, updateIcons will set
-    //what is displayed in each square.  Unlike the others though,
-    //it's not just the number from the 2D array.  Somehow each of 
-    //those values in the 2D array must be mapped to its own icon
-    //so that as the numbers move around, the images do too.  
-    //The icons are in an array, so the indices may prove useful.
     public void updateIcons()
     {
         for(int r=0; r<3; r++)
@@ -173,29 +162,15 @@ public class PictureView extends JFrame implements ActionListener
                     buttons[r][c].setIcon(new ImageIcon("") );
                 else
                 {
-                    //Use the puzzle to get the num at (r,c)
-                    //Use the num to get the appropriate icon for (r,c)
-                    //Use the setIcon method to set the button's icon
- 
-    				//buttons[r][c].setIcon(new ImageIcon("pic/" + p.getGrid()[r][c] + ".png"));
-                	
                 	ImageIcon icon = new ImageIcon("pic/" + p.getGrid()[r][c] + ".png");
-                	Image img = icon.getImage();
-                	Image imgScale = img.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-    				ImageIcon scaledIcon = new ImageIcon(imgScale);
+    			ImageIcon scaledIcon = new ImageIcon((icon.getImage()).getScaledInstance(100, 100, Image.SCALE_SMOOTH););
                 	buttons[r][c].setIcon(scaledIcon);
     				
-    				/*
-    				Image img = icon.getImage();
-    				Image imgScale = img.getScaledInstance(label.getWidth(); label.getHeight(); Image.SCALE_SMOOTH);
-    				ImageIcon scaledIcon = new ImageIcon(imgScale);
-    				label.setIcon(scaledICon);
-    				*/
                 }
             }
         }
         
-        movesReport.setText(/*update the number of moves*/ p.getNumMoves() + "");
+        movesReport.setText(p.getNumMoves() + "");
     }
     
     public static void main(String[] args) 
